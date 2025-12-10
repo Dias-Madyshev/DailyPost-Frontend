@@ -38,7 +38,7 @@ export default function Create() {
     show: false,
     type: 'success',
     title: '',
-    message: ''
+    message: '',
   })
 
   const {
@@ -54,12 +54,16 @@ export default function Create() {
   const content = watch('content')
 
   // Функция для показа модалки
-  const showModal = (type: 'success' | 'error', title: string, message: string) => {
+  const showModal = (
+    type: 'success' | 'error',
+    title: string,
+    message: string,
+  ) => {
     setModal({
       show: true,
       type,
       title,
-      message
+      message,
     })
   }
 
@@ -79,7 +83,11 @@ export default function Create() {
 
       // Проверяем размер файла (макс 5MB)
       if (formImage.size > 5 * 1024 * 1024) {
-        showModal('error', 'Ошибка загрузки', 'Файл слишком большой. Максимальный размер: 5MB')
+        showModal(
+          'error',
+          'Ошибка загрузки',
+          'Файл слишком большой. Максимальный размер: 5MB',
+        )
         return
       }
 
@@ -91,7 +99,11 @@ export default function Create() {
         'image/webp',
       ]
       if (!allowedTypes.includes(formImage.type)) {
-        showModal('error', 'Неподдерживаемый формат', 'Поддерживаются только изображения: JPG, PNG, GIF, WebP')
+        showModal(
+          'error',
+          'Неподдерживаемый формат',
+          'Поддерживаются только изображения: JPG, PNG, GIF, WebP',
+        )
         return
       }
 
@@ -129,7 +141,11 @@ export default function Create() {
       }
     } catch (error) {
       console.error('Ошибка создания поста:', error)
-      showModal('error', 'Ошибка', 'Не удалось создать пост. Попробуйте еще раз.')
+      showModal(
+        'error',
+        'Ошибка',
+        'Не удалось создать пост. Попробуйте еще раз.',
+      )
     }
   }
 
@@ -456,7 +472,10 @@ export default function Create() {
                     }}
                   >
                     <img
-                      src={`http://localhost:3000/${image_url}`}
+                      src={`${
+                        process.env.REACT_APP_SERVER_URL ||
+                        'http://localhost:3000'
+                      }/${image_url}`}
                       alt="Загруженное изображение"
                       style={{
                         width: '100%',
@@ -532,11 +551,11 @@ export default function Create() {
 
       {/* Модалка уведомлений */}
       {modal.show && (
-        <div 
+        <div
           className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
           style={{ animation: 'fadeIn 0.3s ease-out' }}
         >
-          <div 
+          <div
             className="bg-white rounded-lg p-6 max-w-md w-full shadow-2xl transform"
             style={{ animation: 'slideIn 0.3s ease-out' }}
           >
@@ -544,23 +563,45 @@ export default function Create() {
             <div className="flex items-center mb-4">
               {modal.type === 'success' ? (
                 <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-3">
-                  <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  <svg
+                    className="w-6 h-6 text-green-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
                   </svg>
                 </div>
               ) : (
                 <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mr-3">
-                  <svg className="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <svg
+                    className="w-6 h-6 text-red-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
                   </svg>
                 </div>
               )}
-              <h3 className="text-lg font-semibold text-gray-900">{modal.title}</h3>
+              <h3 className="text-lg font-semibold text-gray-900">
+                {modal.title}
+              </h3>
             </div>
-            
+
             {/* Сообщение */}
             <p className="text-gray-600 mb-6">{modal.message}</p>
-            
+
             {/* Кнопки */}
             <div className="flex justify-end">
               <Button

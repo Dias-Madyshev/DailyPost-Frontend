@@ -70,7 +70,12 @@ const CreatePost = () => {
         <h2 className="text-2xl font-bold text-center mb-4">Create Post</h2>
         {image_url && (
           <div>
-            <img src={`http://localhost:3000/${image_url}`} alt="" />
+            <img
+              src={`${
+                process.env.REACT_APP_SERVER_URL || 'http://localhost:3000'
+              }/${image_url}`}
+              alt=""
+            />
             <button
               onClick={removeImage}
               className="bg-red-500 h-[60px] w-[200px] mt-[10px]"

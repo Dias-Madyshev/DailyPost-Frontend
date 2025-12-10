@@ -117,7 +117,8 @@ export default function Home() {
                   <div className="mb-4 rounded-lg overflow-hidden bg-gray-100">
                     <img
                       src={`${
-                        process.env.REACT_APP_API_URL || 'http://localhost:3000'
+                        process.env.REACT_APP_SERVER_URL ||
+                        'http://localhost:3000'
                       }/${post.image_url}`}
                       alt={post.title}
                       className="w-full h-48 object-cover transition-transform group-hover:scale-105"

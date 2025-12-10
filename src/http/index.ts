@@ -1,7 +1,9 @@
 import axios, { AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 import { AuthResponse } from '../models/response/AuthResponse'
 
-const BASE_URL = 'http://localhost:3000/api'
+const BASE_URL = `${
+  process.env.REACT_APP_SERVER_URL || 'http://localhost:3000'
+}/api`
 
 const $api = axios.create({
   withCredentials: true,

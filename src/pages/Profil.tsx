@@ -58,7 +58,7 @@ export default function Profil() {
     return date.toLocaleDateString('ru-RU', {
       day: 'numeric',
       month: 'long',
-      year: 'numeric'
+      year: 'numeric',
     })
   }
 
@@ -77,7 +77,9 @@ export default function Profil() {
       <Layout>
         <div className="min-h-screen flex items-center justify-center">
           <div className="text-center">
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">Ошибка загрузки</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">
+              Ошибка загрузки
+            </h2>
             <p className="text-gray-600">Не удалось загрузить данные профиля</p>
           </div>
         </div>
@@ -91,8 +93,12 @@ export default function Profil() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Заголовок */}
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Мой профиль</h1>
-            <p className="text-gray-600">Управление вашими данными и настройками</p>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              Мой профиль
+            </h1>
+            <p className="text-gray-600">
+              Управление вашими данными и настройками
+            </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -100,7 +106,9 @@ export default function Profil() {
             <div className="lg:col-span-2">
               <Card variant="elevated" padding="none" className="mb-6">
                 <CardHeader className="p-6 border-b">
-                  <h2 className="text-xl font-semibold text-gray-900">Информация профиля</h2>
+                  <h2 className="text-xl font-semibold text-gray-900">
+                    Информация профиля
+                  </h2>
                 </CardHeader>
                 <CardContent className="p-6">
                   {/* Аватар и основные данные */}
@@ -116,24 +124,32 @@ export default function Profil() {
                           <input
                             type="text"
                             value={newUsername}
-                            onChange={(e) => setNewUsername(e.target.value)}
+                            onChange={e => setNewUsername(e.target.value)}
                             className="text-2xl font-bold bg-gray-50 border border-gray-300 rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
                             placeholder="Имя пользователя"
                           />
                         ) : (
-                          <h3 className="text-2xl font-bold text-gray-900">{profile.username}</h3>
+                          <h3 className="text-2xl font-bold text-gray-900">
+                            {profile.username}
+                          </h3>
                         )}
                       </div>
                       {profile.nickname && (
-                        <p className="text-gray-600 mt-1">@{profile.nickname}</p>
+                        <p className="text-gray-600 mt-1">
+                          @{profile.nickname}
+                        </p>
                       )}
                       <div className="flex items-center mt-2">
-                        <div className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                          profile.isactivated 
-                            ? 'bg-green-100 text-green-800' 
-                            : 'bg-yellow-100 text-yellow-800'
-                        }`}>
-                          {profile.isactivated ? 'Активирован' : 'Не активирован'}
+                        <div
+                          className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                            profile.isactivated
+                              ? 'bg-green-100 text-green-800'
+                              : 'bg-yellow-100 text-yellow-800'
+                          }`}
+                        >
+                          {profile.isactivated
+                            ? 'Активирован'
+                            : 'Не активирован'}
                         </div>
                       </div>
                     </div>
@@ -176,12 +192,20 @@ export default function Profil() {
                   {/* Дополнительная информация */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <dt className="text-sm font-medium text-gray-500">ID пользователя</dt>
-                      <dd className="mt-1 text-sm text-gray-900">#{profile.id}</dd>
+                      <dt className="text-sm font-medium text-gray-500">
+                        ID пользователя
+                      </dt>
+                      <dd className="mt-1 text-sm text-gray-900">
+                        #{profile.id}
+                      </dd>
                     </div>
                     <div>
-                      <dt className="text-sm font-medium text-gray-500">Дата регистрации</dt>
-                      <dd className="mt-1 text-sm text-gray-900">{formatDate(profile.created_at)}</dd>
+                      <dt className="text-sm font-medium text-gray-500">
+                        Дата регистрации
+                      </dt>
+                      <dd className="mt-1 text-sm text-gray-900">
+                        {formatDate(profile.created_at)}
+                      </dd>
                     </div>
                   </div>
                 </CardContent>
@@ -192,19 +216,27 @@ export default function Profil() {
             <div className="space-y-6">
               <Card variant="elevated" padding="none">
                 <CardHeader className="p-6 border-b">
-                  <h2 className="text-lg font-semibold text-gray-900">Статистика</h2>
+                  <h2 className="text-lg font-semibold text-gray-900">
+                    Статистика
+                  </h2>
                 </CardHeader>
                 <CardContent className="p-6">
                   <div className="space-y-4">
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-blue-600">{profile.posts_count}</div>
-                      <div className="text-sm text-gray-500">Постов опубликовано</div>
+                      <div className="text-3xl font-bold text-blue-600">
+                        {profile.posts_count}
+                      </div>
+                      <div className="text-sm text-gray-500">
+                        Постов опубликовано
+                      </div>
                     </div>
                     <div className="text-center">
                       <div className="text-3xl font-bold text-green-600">
                         {profile.isactivated ? '✓' : '✗'}
                       </div>
-                      <div className="text-sm text-gray-500">Статус активации</div>
+                      <div className="text-sm text-gray-500">
+                        Статус активации
+                      </div>
                     </div>
                   </div>
                 </CardContent>
@@ -213,7 +245,9 @@ export default function Profil() {
               {/* Действия аккаунта */}
               <Card variant="elevated" padding="none">
                 <CardHeader className="p-6 border-b">
-                  <h2 className="text-lg font-semibold text-gray-900">Управление аккаунтом</h2>
+                  <h2 className="text-lg font-semibold text-gray-900">
+                    Управление аккаунтом
+                  </h2>
                 </CardHeader>
                 <CardContent className="p-6">
                   <Button
@@ -233,8 +267,12 @@ export default function Profil() {
         {showLogoutModal && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
             <div className="bg-white rounded-lg p-6 max-w-sm w-full">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Подтверждение выхода</h3>
-              <p className="text-gray-600 mb-6">Вы уверены, что хотите выйти из аккаунта?</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                Подтверждение выхода
+              </h3>
+              <p className="text-gray-600 mb-6">
+                Вы уверены, что хотите выйти из аккаунта?
+              </p>
               <div className="flex space-x-3">
                 <Button
                   onClick={handleLogout}
