@@ -92,6 +92,9 @@ export const checkAuth = createAsyncThunk('checkAuth', async (_, thunkApi) => {
 
     return user
   } catch (error: any) {
+    // Очищаем localStorage при ошибке проверки токена
+    localStorage.removeItem('accessToken')
+    localStorage.removeItem('refreshToken')
     return null
   }
 })
